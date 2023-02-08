@@ -1,0 +1,281 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600&display=swap');
+
+:root {
+  --soft-blue: hsl(215, 51%, 70%);
+  --cyan-primary: hsl(178, 100%, 50%);
+
+  --dark-blue-bg: hsl(217, 54%, 11%);
+  --dark-blue-bg-card: hsl(216, 50%, 16%);
+  --dark-blue-line: hsl(215, 32%, 27%);
+  --plain-white: hsl(0, 0%, 100%);
+
+  --ff-outfit: 'Outfit', sans-serif;
+
+  --fw-light: 300;
+  --fw-normal: 400;
+  --fw-bold: 600;
+}
+
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+    2. Remove default margin
+  */
+* {
+  margin: 0;
+}
+/*
+    3. Allow percentage-based heights in the application
+  */
+html,
+body {
+  height: 100%;
+}
+/*
+    Typographic tweaks!
+    4. Add accessible line-height
+    5. Improve text rendering
+  */
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+    6. Improve media defaults
+  */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+    7. Remove built-in form typography styles
+  */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+    8. Avoid text overflows
+  */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+    9. Create a root stacking context
+  */
+#root,
+#__next {
+  isolation: isolate;
+}
+
+body {
+  background-color: var(--dark-blue-bg);
+  font-family: var(--ff-outfit);
+  color: var(--plain-white);
+  font-weight: var(--fw-normal);
+  display: flex;
+  place-content: center;
+}
+
+img {
+  cursor: pointer;
+}
+
+.card {
+  max-width: 375px;
+  background-color: var(--dark-blue-bg-card);
+  margin: 3rem;
+  border-radius: 1rem;
+  padding: 1.5rem;
+  display: grid;
+  gap: 1rem;
+  position: relative;
+}
+
+.card__image {
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  transition: all 1s ease-out;
+  cursor: pointer;
+}
+
+.card__image .overlay:is(:hover) {
+  opacity: 1;
+  background-color: rgba(0, 255, 247, 0.6);
+}
+
+.card__title {
+  display: inline-block;
+  font-size: 1.5rem;
+  font-weight: var(--fw-bold);
+}
+
+.card__title:is(:hover) {
+  color: var(--cyan-primary);
+  cursor: pointer;
+  transition: all 1s ease-out;
+}
+
+p {
+  color: var(--soft-blue);
+  line-height: 2rem;
+  font-size: 18px;
+}
+
+.flex-group {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid var(--dark-blue-line);
+  padding-bottom: 1rem;
+}
+
+.card__price,
+.card__offer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+}
+
+.card__price {
+  color: var(--cyan-primary);
+}
+
+.card__creator {
+  display: flex;
+  place-items: center;
+  gap: 1rem;
+}
+
+.card__creator img {
+  height: 26px;
+  border-radius: 3rem;
+  border: 1px solid var(--plain-white);
+}
+
+.card__creator span {
+  color: var(--plain-white);
+}
+
+.card__creator span:is(:hover) {
+  color: var(--cyan-primary);
+  cursor: pointer;
+  transition: all 1s ease-out;
+}
+
+/* MODAL */
+
+.modal {
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  position: fixed;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.5s ease-in-out;
+}
+
+.modal:target {
+  opacity: 1;
+  pointer-events: unset;
+}
+
+.modal__content {
+  margin: auto;
+  height: 90%;
+  max-width: 600px;
+  overflow: hidden;
+  padding: 2.5em 1.5em;
+}
+
+.modal__image {
+  width: 90%;
+  margin: 0 auto;
+  max-width: 600px;
+  margin-bottom: 2rem;
+}
+
+#nft-modal {
+  width: 100%;
+  height: 100%;
+  display: block;
+  border-radius: 2rem;
+}
+
+/* .modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  transition: all 2s ease-out;
+}
+
+.modal__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 80%;
+  height: 80%;
+  transform: translate(-50%, -50%);
+  transition: all 2s;
+} */
+
+/* .modal__content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  height: 80%;
+}
+
+#nft {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+} */
